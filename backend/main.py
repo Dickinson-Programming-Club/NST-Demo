@@ -151,7 +151,6 @@ async def style_transfer(
         result.save(img_byte_arr, format='PNG')
         img_byte_arr = img_byte_arr.getvalue()
 
-        # Encode image to Base64
         encoded_image = base64.b64encode(img_byte_arr).decode('utf-8')
 
         response = {
