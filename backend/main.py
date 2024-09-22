@@ -137,8 +137,8 @@ async def style_transfer(
         start_time = time.time()
         losses = []
 
-        for n in tqdm(range(epochs), desc="Epochs"):  # Add tqdm for epochs
-            for m in tqdm(range(steps_per_epoch), desc="Steps", leave=False):  # Add tqdm for steps
+        for n in tqdm(range(epochs), desc="Epochs"): 
+            for m in tqdm(range(steps_per_epoch), desc="Steps", leave=False):  
                 loss = train_step(image, extractor, style_targets, content_targets, opt, style_weight, content_weight, total_variation_weight)
                 losses.append(float(loss.numpy()))  
 
