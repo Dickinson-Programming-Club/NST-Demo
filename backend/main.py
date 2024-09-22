@@ -14,8 +14,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("style_transfer_app")
 
 # Set inter and intra op parallelism to 1 to avoid resource contention.
-tf.config.threading.set_inter_op_parallelism_threads(1)
-tf.config.threading.set_intra_op_parallelism_threads(1)
+tf.config.threading.set_inter_op_parallelism_threads(4)
+tf.config.threading.set_intra_op_parallelism_threads(4)
 
 app = FastAPI(title="Style Transfer API", description="API for performing neural style transfer on images.")
 
