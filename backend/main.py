@@ -13,7 +13,7 @@ from tqdm import tqdm
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("style_transfer_app")
 
-# Set inter and intra op parallelism to 1 to avoid resource contention.
+# Set inter and intra op parallelism options to 4.
 tf.config.threading.set_inter_op_parallelism_threads(4)
 tf.config.threading.set_intra_op_parallelism_threads(4)
 
