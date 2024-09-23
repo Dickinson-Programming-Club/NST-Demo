@@ -157,7 +157,6 @@ async def style_transfer(
             "image": encoded_image,
             "statistics": {
                 "total_time": total_time,
-                "losses": losses,
                 "style_weight": style_weight,
                 "content_weight": content_weight,
                 "total_variation_weight": total_variation_weight,
