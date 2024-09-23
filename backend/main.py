@@ -20,7 +20,7 @@ tf.config.threading.set_intra_op_parallelism_threads(8)
 app = FastAPI(title="Style Transfer API", description="API for performing neural style transfer on images.")
 
 def load_img(img_bytes):
-    max_dim = 256  
+    max_dim = 256 # I would like to scale this to 512x512 but the performance struggles real bad on free hardware. Either I scale up to 512 and reduce the epochs and training steps by half or keep the dim at 256 while keeping image quality.
     img = tf.image.decode_image(img_bytes, channels=3)
     img = tf.image.convert_image_dtype(img, tf.float32)
     shape = tf.cast(tf.shape(img)[:-1], tf.float32)
