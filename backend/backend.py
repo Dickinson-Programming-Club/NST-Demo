@@ -172,6 +172,6 @@ async def style_transfer(
         logger.error(f"Error during style transfer: {e}")
         raise HTTPException(status_code=500, detail="An error occurred during style transfer.")
 
-if __name__ == "__main__":
+if __name__ == "__backend__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
