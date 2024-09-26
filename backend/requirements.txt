@@ -6,3 +6,4 @@ uvicorn
 num
 requests
 tqdm
+tensorrt
