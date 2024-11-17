@@ -111,7 +111,6 @@ style_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 
 content_layers = ['block5_conv2']
 extractor = StyleContentModel(style_layers, content_layers)
 
-@spaces.GPU(duration=120)  # Style transfer typically needs more than 60s
 def style_transfer_fn(content_image, style_image, progress=gr.Progress(track_tqdm=True)):
     """Main style transfer function for Gradio interface"""
     try:
@@ -150,7 +149,14 @@ def style_transfer_fn(content_image, style_image, progress=gr.Progress(track_tqd
         logger.error(f"Error during style transfer: {e}")
         raise gr.Error("An error occurred during style transfer.")
 
-# Create Gradio interface
+# Create Gradio interface with Spaces configuration
+from huggingface_spaces import Space
+
+@Space.run_in_space(
+    space_id="your-username/your-space-name",  # replace with your space name
+    hardware="cpu",
+    stage=SpaceStage.LIVE
+)
 iface = gr.Interface(
     fn=style_transfer_fn,
     inputs=[
