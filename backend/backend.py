@@ -1,4 +1,5 @@
 import gradio as gr
+import spaces
 import tensorflow as tf
 import numpy as np
 from PIL import Image
@@ -110,6 +111,7 @@ style_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 
 content_layers = ['block5_conv2']
 extractor = StyleContentModel(style_layers, content_layers)
 
+@spaces.GPU(duration=120)  # Style transfer typically needs more than 60s
 def style_transfer_fn(content_image, style_image, progress=gr.Progress(track_tqdm=True)):
     """Main style transfer function for Gradio interface"""
     try:
@@ -156,10 +158,10 @@ iface = gr.Interface(
         gr.Image(label="Style Image", type="pil")
     ],
     outputs=gr.Image(label="Stylized Image"),
-    title="Neural Style Transfer Demo - Ty Chermsirivatana",
+    title="Neural Style Transfer",
     description="Upload a content image and a style image to create a stylized combination.",
     examples=[
-        ["images/test_base_image.jpg", "examples/test_style_image.jpg"]
+        ["examples/content.jpg", "examples/style.jpg"]
     ],
     cache_examples=True
 )
